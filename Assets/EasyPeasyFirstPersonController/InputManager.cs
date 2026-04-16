@@ -12,6 +12,12 @@ public class InputManager : MonoBehaviour, IInputManager
     public bool sprint { get; private set; }
     public bool crouch { get; private set; }
     public bool slide { get; private set; }
+    public bool weedPressed { get; private set; }
+
+    private void LateUpdate()
+    {
+        weedPressed = false;
+    }
 
     private void Awake()
     {
@@ -39,6 +45,9 @@ public class InputManager : MonoBehaviour, IInputManager
 
         inputActions.Player.Slide.performed += ctx => slide = true;
         inputActions.Player.Slide.canceled += ctx => slide = false;
+
+        inputActions.Player.Weed.performed += ctx => weedPressed = true;
+        inputActions.Player.Weed.canceled += ctx => weedPressed = false;
     }
 
     private void OnDisable()
