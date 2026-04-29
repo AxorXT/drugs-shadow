@@ -23,6 +23,7 @@ public class WeedEffectController : MonoBehaviour
 
     public InputManager input;
     public WeedSmokeTrail smokeTrail;
+    public HeartRateSystem heartSystem;
 
     void Start()
     {
@@ -53,6 +54,7 @@ public class WeedEffectController : MonoBehaviour
     IEnumerator WeedEffectSequence()
     {
         yield return StartCoroutine(ActivateEffect());
+        heartSystem.AddStress(40f);
         smokeTrail.PlayTrail();
 
         loopEffect = StartCoroutine(WeedLoop());
@@ -92,7 +94,7 @@ public class WeedEffectController : MonoBehaviour
         while (true)
         {
             float time = Time.time;
-
+            heartSystem.AddStress(Time.deltaTime * 3f);
             colorAdjust.hueShift.value = Mathf.Sin(time * 0.8f) * 25f;
             Camera.main.fieldOfView = (originalFOV + 18f) + Mathf.Sin(time * 1.2f) * 4f;
             lens.intensity.value = -0.6f + Mathf.Sin(time * 1.5f) * 0.1f;
