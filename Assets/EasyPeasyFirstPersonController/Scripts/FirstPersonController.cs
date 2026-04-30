@@ -204,5 +204,10 @@ namespace EasyPeasyFirstPersonController
             }
         }
 
+        public void SetLookRotation(float xRot)
+        {
+            xRotation = xRot;
+        }
+
     }
 }

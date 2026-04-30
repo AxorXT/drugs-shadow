@@ -1,5 +1,6 @@
 using DG.Tweening;
 using EasyPeasyFirstPersonController;
+using System.Collections;
 using UnityEngine;
 
 public class StartMenuController : MonoBehaviour
@@ -12,41 +13,45 @@ public class StartMenuController : MonoBehaviour
     public GameObject startMenuUI;
     public GameObject heartUI;
     public GameObject crosshair;
+    public GameObject pauseMenuUI;
 
     [Header("Rotación")]
     public float lookAtWatchX = 60f;
-    public float transitionTime = 0.5f;
 
     private bool gameStarted = false;
+
+    public WatchAnimator watchAnim;
+    public CameraLookController camLook;
+
+    public bool IsGameStarted => gameStarted;
+
+    void Awake()
+    {
+        //cámara inicia viendo el reloj (SIN animación)
+        playerCamera.localRotation = Quaternion.Euler(lookAtWatchX, 0f, 0f);
+    }
 
     void Start()
     {
         ActivateStartMenu();
-        playerController.enabled = false;
-        playerCamera.localRotation = Quaternion.Euler(lookAtWatchX, 0f, 0f);
-    }
-
-    void Awake()
-    {
-        //Coloca la cámara DIRECTAMENTE viendo el reloj (sin animación)
-        playerCamera.localRotation = Quaternion.Euler(lookAtWatchX, 0f, 0f);
     }
 
     void ActivateStartMenu()
     {
         gameStarted = false;
 
-        //Bloquear movimiento
         playerController.enabled = false;
 
-        //Mostrar cursor
+        watchAnim.ToStart();
+        camLook.LookAtWatch();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        //Mostrar UI
         startMenuUI.SetActive(true);
         heartUI.SetActive(false);
         crosshair.SetActive(false);
+        pauseMenuUI.SetActive(false);
     }
 
     public void StartGame()
@@ -55,32 +60,54 @@ public class StartMenuController : MonoBehaviour
 
         gameStarted = true;
 
-        //Ocultar UI
         startMenuUI.SetActive(false);
         heartUI.SetActive(true);
         crosshair.SetActive(true);
 
-        //Ocultar cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         playerController.enabled = false;
-        float currentX = lookAtWatchX;
 
-        DOTween.To(() => currentX, x =>
-        {
-            currentX = x;
+        watchAnim.ToPlay();
+        camLook.LookForward();
 
-            // aplicamos rotación manual
-            playerCamera.localRotation = Quaternion.Euler(currentX, 0f, 0f);
+        Invoke(nameof(EnablePlayer), 0.5f);
+    }
 
-        }, 0f, transitionTime)
-    .SetEase(Ease.InOutSine)
-    .OnComplete(() =>
+    void EnablePlayer()
     {
-        //ahora sí activamos el controller
         playerController.enabled = true;
-    });
+    }
+
+    public void PauseGame()
+    {
+        playerController.enabled = false;
+
+        watchAnim.ToPause();
+        camLook.LookAtWatch();
+
+        pauseMenuUI.SetActive(true);
+        heartUI.SetActive(false);
+        crosshair.SetActive(false);
+        startMenuUI.SetActive(false );
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenuUI.SetActive(false);
+        heartUI.SetActive(true);
+
+        watchAnim.ToPlay();
+        camLook.LookForward();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        StartCoroutine(EnablePlayerAfterRotation());
     }
 
     public void QuitGame()
@@ -89,15 +116,18 @@ public class StartMenuController : MonoBehaviour
         Debug.Log("Salir del juego");
     }
 
-    void SetCameraRotation(float xRot)
+    IEnumerator EnablePlayerAfterRotation()
     {
-        // accedemos a la rotación vertical del controller
-        var field = typeof(FirstPersonController)
-            .GetField("xRotation", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        yield return new WaitForSeconds(0.5f);
 
-        if (field != null)
-        {
-            field.SetValue(playerController, xRot);
-        }
+        //sincronizar rotación antes de activar
+        float currentX = playerCamera.localEulerAngles.x;
+
+        if (currentX > 180f)
+            currentX -= 360f;
+
+        playerController.SetLookRotation(currentX);
+
+        playerController.enabled = true;
     }
 }

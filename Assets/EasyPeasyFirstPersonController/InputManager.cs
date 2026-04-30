@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour, IInputManager
     public bool slide { get; private set; }
     public bool weedPressed { get; private set; }
 
+    public bool pausePressed { get; private set; }
+
     private void LateUpdate()
     {
         weedPressed = false;
@@ -48,6 +50,9 @@ public class InputManager : MonoBehaviour, IInputManager
 
         inputActions.Player.Weed.performed += ctx => weedPressed = true;
         inputActions.Player.Weed.canceled += ctx => weedPressed = false;
+
+        inputActions.Player.Pause.performed += ctx => pausePressed = true;
+        inputActions.Player.Pause.canceled += ctx => pausePressed = false;
     }
 
     private void OnDisable()
