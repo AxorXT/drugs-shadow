@@ -1,0 +1,460 @@
+fileFormatVersion: 2
+guid: 66f03837152a33f47ae8b21a850e6612
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Cuerpo1(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MESH
+      parentName: Cuerpo1(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 30.03901, y: 30.03901, z: 30.03901}
+    - name: Msh_Body_Pepe
+      parentName: MESH
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: SKELETON
+      parentName: Cuerpo1(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Grp_JN_Root_Pepe
+      parentName: SKELETON
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Root_Pepe
+      parentName: Grp_JN_Root_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Connect
+      parentName: JN_Root_Pepe
+      position: {x: -0, y: 0.9883191, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Grp_JN_Main_Pepe
+      parentName: Connect
+      position: {x: -0, y: -0.9883191, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Main_Pepe
+      parentName: Grp_JN_Main_Pepe
+      position: {x: -0, y: 0.9883191, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Normal_Leg_L_Pepe
+      parentName: JN_Main_Pepe
+      position: {x: -0.12233336, y: -0.14145645, z: 0.007928386}
+      rotation: {x: 0.6620003, y: 0.7218781, z: -0.16295412, w: -0.11871633}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Normal_Leg_L_Pepe
+      parentName: GRP_JN_Normal_Leg_L_Pepe
+      position: {x: 1.4210854e-16, y: -8.881784e-18, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Normal_Knee_L_Pepe
+      parentName: JN_Normal_Leg_L_Pepe
+      position: {x: -0.34465754, y: -1.3212981e-16, z: 7.861036e-17}
+      rotation: {x: -1.5514935e-33, y: 0.11751171, z: -7.256678e-17, w: 0.9930715}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Normal_Ankle_L_Pepe
+      parentName: JN_Normal_Knee_L_Pepe
+      position: {x: -0.42375892, y: 3.5527136e-17, z: 6.217249e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_FeetAnkle_L
+      parentName: JN_Normal_Ankle_L_Pepe
+      position: {x: -0.0002123729, y: 0.00006275602, z: 0.00004106281}
+      rotation: {x: -0.19930772, y: -0.56767994, z: 0.12916239, w: 0.7882468}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Ankle_L
+      parentName: GRP_JN_FeetAnkle_L
+      position: {x: 1.7763568e-17, y: 0, z: -2.6645352e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Normal_R_Leg_R_Pepe
+      parentName: JN_Main_Pepe
+      position: {x: 0.12233336, y: -0.14145645, z: 0.007928386}
+      rotation: {x: -0.16295412, y: -0.11871633, z: 0.6620003, w: 0.7218781}
+      scale: {x: 1, y: 1, z: -1}
+    - name: JN_Normal_R_eg_R_Pepe
+      parentName: GRP_JN_Normal_R_Leg_R_Pepe
+      position: {x: 1.4210854e-16, y: -8.881784e-18, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Normal_Knee_R_Pepe
+      parentName: JN_Normal_R_eg_R_Pepe
+      position: {x: -0.34465754, y: -1.3212981e-16, z: 7.861036e-17}
+      rotation: {x: -1.5514935e-33, y: 0.11751171, z: -7.256678e-17, w: 0.9930715}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Normal_Ankle_R_Pepe
+      parentName: JN_Normal_Knee_R_Pepe
+      position: {x: -0.42375892, y: 3.5527136e-17, z: 6.217249e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_FeetAnkle_R_
+      parentName: JN_Normal_Ankle_R_Pepe
+      position: {x: -0.0002123729, y: 0.00006275602, z: 0.00004106281}
+      rotation: {x: -0.19930772, y: -0.56767994, z: 0.12916239, w: 0.7882468}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Ankle_R_
+      parentName: GRP_JN_FeetAnkle_R_
+      position: {x: 1.7763568e-17, y: 0, z: -2.6645352e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Spine_Pepe
+      parentName: JN_Main_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Hips_Pepe
+      parentName: GRP_JN_Spine_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Abs_Pepe
+      parentName: JN_Hips_Pepe
+      position: {x: -0.16056, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Chest_Pepe
+      parentName: JN_Abs_Pepe
+      position: {x: -0.16056, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Arm_Normal_L_Pepe
+      parentName: JN_Chest_Pepe
+      position: {x: -0.13520615, y: -0.17328188, z: -0.019694518}
+      rotation: {x: 0.029328197, y: -0.029328197, z: 0.7064983, w: 0.7064983}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Shoulder_Normal_L_Pepe
+      parentName: GRP_JN_Arm_Normal_L_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Elbow_Normal_L_Pepe
+      parentName: JN_Shoulder_Normal_L_Pepe
+      position: {x: -0.2531737, y: -5.684342e-16, z: -1.5987211e-16}
+      rotation: {x: 0, y: 0.06837225, z: -0, w: 0.99765986}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Wrist_Normal_L_Pepe
+      parentName: JN_Elbow_Normal_L_Pepe
+      position: {x: -0.23550092, y: 5.684342e-16, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Hand_L_Pepe
+      parentName: JN_Wrist_Normal_L_Pepe
+      position: {x: 1.8600588e-12, y: 0, z: 0.00000093596424}
+      rotation: {x: 0, y: -0.026934141, z: -0, w: 0.99963725}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Wrist_L_Pepe
+      parentName: GRP_JN_Hand_L_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Hand_L_Pepe
+      parentName: JN_Wrist_L_Pepe
+      position: {x: -0.05580696, y: 0, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Finger_Index_L_Pepe
+      parentName: JN_Hand_L_Pepe
+      position: {x: -0.02007431, y: 0.00037673948, z: 0.024166493}
+      rotation: {x: 0, y: -0.011676107, z: -0, w: 0.9999319}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Index_A1_L_Pepe
+      parentName: GRP_JN_Finger_Index_L_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0.0056261458, z: -0, w: 0.9999842}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Finger_Midle_L_Pepe
+      parentName: JN_Hand_L_Pepe
+      position: {x: -0.023765793, y: 0.00037673948, z: 0.0021294237}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Midle_A1_L_Pepe
+      parentName: GRP_JN_Finger_Midle_L_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.00083741883, z: -0, w: 0.99999964}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Finger_Pinky_L_Pepe
+      parentName: JN_Hand_L_Pepe
+      position: {x: -0.0030455017, y: 0.00037673948, z: -0.034591768}
+      rotation: {x: 0, y: -0.011758289, z: -0, w: 0.99993086}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Pinky_A1_L_Pepe
+      parentName: GRP_JN_Finger_Pinky_L_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Finger_Ring_L_Pepe
+      parentName: JN_Hand_L_Pepe
+      position: {x: -0.02065773, y: 0.00037673948, z: -0.016924739}
+      rotation: {x: 0, y: -0.012670944, z: -0, w: 0.9999197}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Ring_A1_L_Pepe
+      parentName: GRP_JN_Finger_Ring_L_Pepe
+      position: {x: -0, y: 2.842171e-16, z: 0}
+      rotation: {x: 0, y: 0.0008375262, z: -0, w: 0.99999964}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Pulgar_L_Pepe
+      parentName: JN_Hand_L_Pepe
+      position: {x: 0.018066963, y: -0.027175404, z: 0.03782989}
+      rotation: {x: 0.46345973, y: 0.32628608, z: 0.033782948, w: 0.82316536}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Pulgar_A1_L_Pepe
+      parentName: GRP_JN_Pulgar_L_Pepe
+      position: {x: -1.0658141e-16, y: 2.842171e-16, z: 0}
+      rotation: {x: -2.220446e-16, y: 4.1633363e-17, z: -5.551115e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Arm_Normal_R_Pepe
+      parentName: JN_Chest_Pepe
+      position: {x: -0.13520615, y: 0.17328188, z: -0.019694518}
+      rotation: {x: -0.7064983, y: 0.7064983, z: -0.029328197, w: -0.029328197}
+      scale: {x: 1, y: 1, z: -1}
+    - name: JN_Shoulder_Normal_R_Pepe
+      parentName: GRP_JN_Arm_Normal_R_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Elbow_Normal_R_Pepe
+      parentName: JN_Shoulder_Normal_R_Pepe
+      position: {x: -0.2531737, y: -5.684342e-16, z: -1.5987211e-16}
+      rotation: {x: 0, y: 0.06837225, z: -0, w: 0.99765986}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Wrist_Normal_R_Pepe
+      parentName: JN_Elbow_Normal_R_Pepe
+      position: {x: -0.23550092, y: 5.684342e-16, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Hand_R_Pepe
+      parentName: JN_Wrist_Normal_R_Pepe
+      position: {x: 1.8600588e-12, y: 0, z: 0.00000093596424}
+      rotation: {x: 0, y: -0.026934141, z: -0, w: 0.99963725}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Wrist_R_Pepe
+      parentName: GRP_JN_Hand_R_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Hand_R_Pepe
+      parentName: JN_Wrist_R_Pepe
+      position: {x: -0.05580696, y: 0, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Finger_Index_R_Pepe
+      parentName: JN_Hand_R_Pepe
+      position: {x: -0.02007431, y: 0.00037673948, z: 0.024166493}
+      rotation: {x: 0, y: -0.011676107, z: -0, w: 0.9999319}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Index_A1_R_Pepe
+      parentName: GRP_JN_Finger_Index_R_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0.0056261458, z: -0, w: 0.9999842}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Finger_Midle_R_Pepe
+      parentName: JN_Hand_R_Pepe
+      position: {x: -0.023765793, y: 0.00037673948, z: 0.0021294237}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Midle_A1_R_Pepe
+      parentName: GRP_JN_Finger_Midle_R_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.00083741883, z: -0, w: 0.99999964}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Finger_Pinky_R_Pepe
+      parentName: JN_Hand_R_Pepe
+      position: {x: -0.0030455017, y: 0.00037673948, z: -0.034591768}
+      rotation: {x: 0, y: -0.011758289, z: -0, w: 0.99993086}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Pinky_A1_R_Pepe
+      parentName: GRP_JN_Finger_Pinky_R_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Pinky_A2_R_Pepe
+      parentName: JN_Finger_Pinky_A1_R_Pepe
+      position: {x: -0.016731005, y: -2.842171e-16, z: -5.1278425e-17}
+      rotation: {x: 0, y: 0.003195557, z: -0, w: 0.99999493}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Finger_Ring_R_Pepe
+      parentName: JN_Hand_R_Pepe
+      position: {x: -0.02065773, y: 0.00037673948, z: -0.016924739}
+      rotation: {x: 0, y: -0.012670944, z: -0, w: 0.9999197}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Ring_A1_R_Pepe
+      parentName: GRP_JN_Finger_Ring_R_Pepe
+      position: {x: -0, y: 2.842171e-16, z: 0}
+      rotation: {x: 0, y: 0.0008375262, z: -0, w: 0.99999964}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Pulgar_R_Pepe
+      parentName: JN_Hand_R_Pepe
+      position: {x: 0.018066963, y: -0.027175404, z: 0.03782989}
+      rotation: {x: 0.46345973, y: 0.32628608, z: 0.033782948, w: 0.82316536}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Finger_Pulgar_A1_R_Pepe
+      parentName: GRP_JN_Pulgar_R_Pepe
+      position: {x: -1.0658141e-16, y: 2.842171e-16, z: 0}
+      rotation: {x: -2.220446e-16, y: 4.1633363e-17, z: -5.551115e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_SpineEnd_Pepe
+      parentName: GRP_JN_Spine_Pepe
+      position: {x: -0.4816809, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Neck_Pepe
+      parentName: JN_SpineEnd_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.70163304, y: 0.08781297, z: 0.08781297, w: 0.70163304}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Neck_Pepe
+      parentName: GRP_JN_Neck_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Neck_Pepe_END
+      parentName: JN_Neck_Pepe
+      position: {x: -0.09078231, y: -1.7763568e-17, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_NeckHead_Pepe
+      parentName: JN_Neck_Pepe_END
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.70163304, y: -0.08781297, z: -0.08781297, w: 0.70163304}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_NeckHead_Pepe
+      parentName: GRP_JN_NeckHead_Pepe
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Head_Pepe
+      parentName: JN_NeckHead_Pepe
+      position: {x: -0.1197551, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: GRP_JN_Jaw_Pepe
+      parentName: JN_Head_Pepe
+      position: {x: -0, y: -3.7814227e-16, z: 0}
+      rotation: {x: -0.120476596, y: -7.377064e-18, z: 0.9927162, w: -6.0786333e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_HeadJaw_Pepe
+      parentName: GRP_JN_Jaw_Pepe
+      position: {x: -0, y: -3.7814227e-16, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JN_Jaw_Pepe
+      parentName: JN_HeadJaw_Pepe
+      position: {x: -0.098344676, y: 2.1836905e-17, z: -4.0733364e-18}
+      rotation: {x: 1.0319601e-32, y: 0.44442505, z: -2.5635758e-17, w: 0.895816}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
