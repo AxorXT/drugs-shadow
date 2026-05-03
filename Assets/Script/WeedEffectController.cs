@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
+using DG.Tweening;
 
 
 public class WeedEffectController : MonoBehaviour
@@ -24,6 +25,9 @@ public class WeedEffectController : MonoBehaviour
     public InputManager input;
     public WeedSmokeTrail smokeTrail;
     public HeartRateSystem heartSystem;
+
+    public SmokingHandAnimator smokingHand;
+    public JointVisualFX jointFX;
 
     void Start()
     {
@@ -53,9 +57,14 @@ public class WeedEffectController : MonoBehaviour
 
     IEnumerator WeedEffectSequence()
     {
-        yield return StartCoroutine(ActivateEffect());
+        yield return smokingHand.ToSmoke().WaitForCompletion();
+        yield return new WaitForSeconds(0.3f);
+        jointFX.SetOn();
+        jointFX.PlaySmoke();
         heartSystem.AddStress(40f);
         smokeTrail.PlayTrail();
+        yield return StartCoroutine(ActivateEffect());
+        StartCoroutine(ReturnHandToIdleAfterDelay(2.5f));
 
         loopEffect = StartCoroutine(WeedLoop());
         yield return new WaitForSeconds(effectDuration);
@@ -63,7 +72,7 @@ public class WeedEffectController : MonoBehaviour
         if (loopEffect != null) StopCoroutine(loopEffect);
         smokeTrail.StopTrail();
         yield return StartCoroutine(DeactivateEffect());
-
+        smokingHand.ToIdle();
         isActive = false;
     }
 
@@ -147,5 +156,28 @@ public class WeedEffectController : MonoBehaviour
             vignette.intensity.value = 0f;
         if (Camera.main != null)
             Camera.main.fieldOfView = originalFOV;
+    }
+
+    public void ForceStopEffect()
+    {
+        if (currentEffect != null)
+            StopCoroutine(currentEffect);
+
+        if (loopEffect != null)
+            StopCoroutine(loopEffect);
+
+        smokeTrail.StopTrail();
+        ResetValues();
+
+        smokingHand.ToIdle();
+
+        isActive = false;
+    }
+
+    IEnumerator ReturnHandToIdleAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        smokingHand.ToIdle();
     }
 }

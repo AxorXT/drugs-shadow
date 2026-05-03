@@ -26,6 +26,8 @@ public class WeedSmokeTrail : MonoBehaviour
     private bool isPlaying = false;
     private Coroutine trailCoroutine;
 
+    public Transform mouthPoint;
+
     void Start()
     {
         smokeHead = new GameObject("SmokeHead").transform;
@@ -67,7 +69,7 @@ public class WeedSmokeTrail : MonoBehaviour
         // Configurar emisión
         var emission = smokeParticles.emission;
         emission.rateOverTime = emissionRate;
-        smokeHead.position = waypoints[0] + Vector3.up * smokeHeightOffset;
+        smokeHead.position = mouthPoint.position;
         smokeParticles.transform.position = smokeHead.position;
         smokeParticles.Play();
 

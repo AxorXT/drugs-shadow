@@ -25,6 +25,8 @@ public class StartMenuController : MonoBehaviour
 
     public bool IsGameStarted => gameStarted;
 
+    public WeedEffectController weedEffect;
+
     void Awake()
     {
         //cámara inicia viendo el reloj (SIN animación)
@@ -84,6 +86,9 @@ public class StartMenuController : MonoBehaviour
     {
         playerController.enabled = false;
 
+        if (weedEffect != null)
+            weedEffect.ForceStopEffect();
+
         watchAnim.ToPause();
         camLook.LookAtWatch();
 
@@ -100,6 +105,7 @@ public class StartMenuController : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         heartUI.SetActive(true);
+        crosshair.SetActive(true);
 
         watchAnim.ToPlay();
         camLook.LookForward();
