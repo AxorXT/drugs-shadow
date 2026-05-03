@@ -5127,6 +5127,7 @@ MonoBehaviour:
   heartSystem: {fileID: 1752275363}
   smokingHand: {fileID: 2038342657}
   jointFX: {fileID: 2038342658}
+  shadowSystem: {fileID: 2038342659}
 --- !u!4 &140748827
 Transform:
   m_ObjectHideFlags: 0
@@ -13337,6 +13338,7 @@ GameObject:
   - component: {fileID: 2038342656}
   - component: {fileID: 2038342657}
   - component: {fileID: 2038342658}
+  - component: {fileID: 2038342659}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -13472,6 +13474,22 @@ MonoBehaviour:
   intensity: 3
   glowDuration: 0.3
   smokePuff: {fileID: 1685090617}
+--- !u!114 &2038342659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038342651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe847f52f99a574db810b14d26cb63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowSystem
+  player: {fileID: 9156347144423831753}
+  shadowPrefab: {fileID: 4721164887893756824, guid: b815bdafe7546de4f86a72c137f599ab, type: 3}
+  spawnRadius: 8
+  minDistance: 6
 --- !u!1 &2066249070
 GameObject:
   m_ObjectHideFlags: 0

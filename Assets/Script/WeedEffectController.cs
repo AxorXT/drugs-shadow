@@ -28,6 +28,7 @@ public class WeedEffectController : MonoBehaviour
 
     public SmokingHandAnimator smokingHand;
     public JointVisualFX jointFX;
+    public ShadowSystem shadowSystem;
 
     void Start()
     {
@@ -61,8 +62,17 @@ public class WeedEffectController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         jointFX.SetOn();
         jointFX.PlaySmoke();
+        shadowSystem.ClearShadows();
         heartSystem.AddStress(40f);
         smokeTrail.PlayTrail();
+
+        int count = Random.Range(1, 3);
+
+        for (int i = 0; i < count; i++)
+        {
+            shadowSystem.SpawnShadow();
+        }
+
         yield return StartCoroutine(ActivateEffect());
         StartCoroutine(ReturnHandToIdleAfterDelay(2.5f));
 
