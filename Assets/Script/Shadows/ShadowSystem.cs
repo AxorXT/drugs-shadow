@@ -32,7 +32,10 @@ public class ShadowSystem : MonoBehaviour
 
         float distance = Random.Range(minDistance, spawnRadius);
 
-        return player.position + dir.normalized * distance;
+        Vector3 pos = player.position + dir.normalized * distance;
+        pos.y = 1f;
+
+        return pos;
     }
 
     public void ClearShadows()

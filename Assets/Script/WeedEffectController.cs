@@ -21,6 +21,7 @@ public class WeedEffectController : MonoBehaviour
     private Coroutine loopEffect;
     private bool isActive = false;
     private bool wasPressed = false;
+    Vector3 originalCamPos;
 
     public InputManager input;
     public WeedSmokeTrail smokeTrail;
@@ -30,6 +31,12 @@ public class WeedEffectController : MonoBehaviour
     public JointVisualFX jointFX;
     public ShadowSystem shadowSystem;
 
+    [Header("Weed Progression")]
+    public float weedIntensity = 0f;
+    public float maxWeed = 1f;
+    public float increaseAmount = 0.25f;
+    public float decaySpeed = 0.05f;
+
     void Start()
     {
         volume.profile.TryGet(out lens);
@@ -37,15 +44,22 @@ public class WeedEffectController : MonoBehaviour
         volume.profile.TryGet(out colorAdjust);
         volume.profile.TryGet(out vignette);
         ResetValues();
+        originalCamPos = Camera.main.transform.localPosition;
     }
 
     void Update()
     {
         bool isPressed = input.weedPressed;
+        if (!isActive)
+        {
+            weedIntensity = Mathf.MoveTowards(weedIntensity, 0f, Time.deltaTime * decaySpeed);
+        }
+
         if (isPressed && !wasPressed && !isActive)
         {
             StartWeedEffect();
         }
+
         wasPressed = isPressed;
     }
 
@@ -58,31 +72,44 @@ public class WeedEffectController : MonoBehaviour
 
     IEnumerator WeedEffectSequence()
     {
+        weedIntensity += increaseAmount;
+        weedIntensity = Mathf.Clamp01(weedIntensity);
+
         yield return smokingHand.ToSmoke().WaitForCompletion();
         yield return new WaitForSeconds(0.3f);
+
         jointFX.SetOn();
         jointFX.PlaySmoke();
+
         shadowSystem.ClearShadows();
         heartSystem.AddStress(40f);
         smokeTrail.PlayTrail();
 
         int count = Random.Range(1, 3);
-
         for (int i = 0; i < count; i++)
-        {
             shadowSystem.SpawnShadow();
-        }
 
         yield return StartCoroutine(ActivateEffect());
+
         StartCoroutine(ReturnHandToIdleAfterDelay(2.5f));
 
-        loopEffect = StartCoroutine(WeedLoop());
-        yield return new WaitForSeconds(effectDuration);
+        if (loopEffect == null)
+            loopEffect = StartCoroutine(WeedLoop());
 
-        if (loopEffect != null) StopCoroutine(loopEffect);
+        yield return new WaitForSeconds(effectDuration);
         smokeTrail.StopTrail();
+
+        //DETENER LOOP
+        if (loopEffect != null)
+        {
+            StopCoroutine(loopEffect);
+            loopEffect = null;
+        }
+
+        //APAGAR EFECTO VISUAL
         yield return StartCoroutine(DeactivateEffect());
-        smokingHand.ToIdle();
+
+        //limpiar estado
         isActive = false;
     }
 
@@ -112,12 +139,37 @@ public class WeedEffectController : MonoBehaviour
     {
         while (true)
         {
+            float intensity = Mathf.Clamp01(weedIntensity);
             float time = Time.time;
-            heartSystem.AddStress(Time.deltaTime * 3f);
-            colorAdjust.hueShift.value = Mathf.Sin(time * 0.8f) * 25f;
-            Camera.main.fieldOfView = (originalFOV + 18f) + Mathf.Sin(time * 1.2f) * 4f;
-            lens.intensity.value = -0.6f + Mathf.Sin(time * 1.5f) * 0.1f;
-            chroma.intensity.value = 1f + Mathf.Sin(time * 2f) * 0.15f;
+
+            lens.intensity.value =
+                (-0.6f + Mathf.Sin(time * 6f) * 0.15f);
+
+            chroma.intensity.value =
+                Mathf.Lerp(0f, 1f, intensity) +
+                Mathf.Sin(time * 2f) * 0.15f * intensity;
+
+            colorAdjust.postExposure.value =
+                Mathf.Lerp(0f, 0.4f, intensity);
+
+            colorAdjust.hueShift.value =
+                Mathf.Sin(time * 5f) * 60f * intensity;
+
+            vignette.intensity.value = (0.4f + Mathf.Sin(time * 6f) * 0.1f);
+
+            Camera.main.fieldOfView =
+                originalFOV +
+                Mathf.Lerp(0f, 18f, intensity);
+
+            Camera.main.transform.localPosition =
+                originalCamPos +
+                new Vector3(
+                    Mathf.Sin(time * 40f) * 0.02f * intensity,
+                    Mathf.Sin(time * 35f) * 0.02f * intensity,
+                    0
+                );
+
+            heartSystem.AddStress(Time.deltaTime * 3f * intensity);
 
             yield return null;
         }
@@ -162,6 +214,7 @@ public class WeedEffectController : MonoBehaviour
         colorAdjust.saturation.value = 0f;
         colorAdjust.postExposure.value = 0f;
         colorAdjust.hueShift.value = 0f;
+        Camera.main.transform.localPosition = originalCamPos;
         if (vignette != null)
             vignette.intensity.value = 0f;
         if (Camera.main != null)
