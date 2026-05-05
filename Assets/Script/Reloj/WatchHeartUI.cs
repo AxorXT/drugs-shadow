@@ -43,8 +43,10 @@ public class WatchHeartUI : MonoBehaviour
 
     void AnimateHeart()
     {
+        float normalized = heartSystem.GetNormalized();
         float pulseSpeed = heartSystem.heartRate * 0.1f;
-        float scale = 0.3f + Mathf.Sin(Time.time * pulseSpeed) * pulseIntensity;
+        float dynamicIntensity = Mathf.Lerp(0.05f, 0.25f, normalized);
+        float scale = 0.3f + Mathf.Sin(Time.time * pulseSpeed) * dynamicIntensity;
         heartIcon.localScale = Vector3.one * scale;
     }
 

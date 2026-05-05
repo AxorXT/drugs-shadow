@@ -16,6 +16,14 @@ public class HeartRateSystem : MonoBehaviour
     public System.Action<float> onHeartRateChanged;
     public System.Action onDeath;
 
+    bool isDead = false;
+    float currentBaseRate;
+
+    void Start()
+    {
+        currentBaseRate = restingRate;
+    }
+
     void Update()
     {
         Recover();
@@ -27,7 +35,12 @@ public class HeartRateSystem : MonoBehaviour
 
     void Recover()
     {
-        heartRate = Mathf.Lerp(heartRate, restingRate, Time.deltaTime * recoverySpeed);
+        heartRate = Mathf.MoveTowards(
+            heartRate,
+            currentBaseRate,
+            Time.deltaTime * recoverySpeed
+        );
+
         onHeartRateChanged?.Invoke(heartRate);
     }
 
@@ -35,13 +48,21 @@ public class HeartRateSystem : MonoBehaviour
     {
         heartRate += amount;
         heartRate = Mathf.Clamp(heartRate, restingRate, maxHeartRate);
+
+        //subir la base si el pulso sube más
+        if (heartRate > currentBaseRate)
+        {
+            currentBaseRate = heartRate;
+        }
+
         onHeartRateChanged?.Invoke(heartRate);
     }
 
     void CheckDeath()
     {
-        if (heartRate >= maxHeartRate)
+        if (heartRate >= maxHeartRate && !isDead)
         {
+            isDead = true;
             onDeath?.Invoke();
         }
     }
@@ -49,5 +70,14 @@ public class HeartRateSystem : MonoBehaviour
     public float GetNormalized()
     {
         return heartRate / maxHeartRate;
+    }
+
+    public void ResetState()
+    {
+        heartRate = restingRate;
+        currentBaseRate = restingRate;
+        isDead = false;
+
+        onHeartRateChanged?.Invoke(heartRate);
     }
 }

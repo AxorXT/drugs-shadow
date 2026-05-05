@@ -72,6 +72,7 @@ public class WeedEffectController : MonoBehaviour
 
     IEnumerator WeedEffectSequence()
     {
+        heartSystem.recoverySpeed = 1.5f;
         weedIntensity += increaseAmount;
         weedIntensity = Mathf.Clamp01(weedIntensity);
 
@@ -82,7 +83,7 @@ public class WeedEffectController : MonoBehaviour
         jointFX.PlaySmoke();
 
         shadowSystem.ClearShadows();
-        heartSystem.AddStress(40f);
+        heartSystem.AddStress(10f);
         smokeTrail.PlayTrail();
 
         int count = Random.Range(1, 3);
@@ -111,10 +112,18 @@ public class WeedEffectController : MonoBehaviour
 
         //limpiar estado
         isActive = false;
+        heartSystem.recoverySpeed = 5f;
     }
 
     IEnumerator ActivateEffect()
     {
+        volume.weight = 1f;
+
+        lens.active = true;
+        chroma.active = true;
+        colorAdjust.active = true;
+        vignette.active = true;
+
         float t = 0;
         float startFOV = Camera.main.fieldOfView;
 
@@ -169,7 +178,12 @@ public class WeedEffectController : MonoBehaviour
                     0
                 );
 
-            heartSystem.AddStress(Time.deltaTime * 3f * intensity);
+            float baseStress = 1.5f;          // siempre sube aunque estés leve
+            float intensityStress = 4f;    // escala con droga
+
+            heartSystem.AddStress(
+                Time.deltaTime * (baseStress + intensity * intensityStress)
+            );
 
             yield return null;
         }
@@ -209,16 +223,38 @@ public class WeedEffectController : MonoBehaviour
 
     void ResetValues()
     {
-        lens.intensity.value = 0f;
-        chroma.intensity.value = 0f;
-        colorAdjust.saturation.value = 0f;
-        colorAdjust.postExposure.value = 0f;
-        colorAdjust.hueShift.value = 0f;
-        Camera.main.transform.localPosition = originalCamPos;
+
+        if (lens != null)
+        {
+            lens.intensity.value = 0f;
+            lens.active = false;
+        }
+
+        if (chroma != null)
+        {
+            chroma.intensity.value = 0f;
+            chroma.active = false;
+        }
+
+        if (colorAdjust != null)
+        {
+            colorAdjust.saturation.value = 0f;
+            colorAdjust.postExposure.value = 0f;
+            colorAdjust.hueShift.value = 0f;
+            colorAdjust.active = false;
+        }
+
         if (vignette != null)
+        {
             vignette.intensity.value = 0f;
+            vignette.active = false;
+        }
+
         if (Camera.main != null)
+        {
             Camera.main.fieldOfView = originalFOV;
+            Camera.main.transform.localPosition = originalCamPos;
+        }
     }
 
     public void ForceStopEffect()
@@ -229,10 +265,13 @@ public class WeedEffectController : MonoBehaviour
         if (loopEffect != null)
             StopCoroutine(loopEffect);
 
-        smokeTrail.StopTrail();
-        ResetValues();
+        currentEffect = null;
+        loopEffect = null;
 
-        smokingHand.ToIdle();
+        smokeTrail.StopTrail();
+
+        //SOLO visuales
+        ResetValues();
 
         isActive = false;
     }
@@ -242,5 +281,41 @@ public class WeedEffectController : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         smokingHand.ToIdle();
+    }
+
+    public void FullReset()
+    {
+        // detener coroutines
+        if (currentEffect != null)
+            StopCoroutine(currentEffect);
+
+        if (loopEffect != null)
+            StopCoroutine(loopEffect);
+
+        currentEffect = null;
+        loopEffect = null;
+
+        // estado
+        isActive = false;
+        weedIntensity = 0f;
+
+        // parar efectos visuales
+        ResetValues();
+
+        // detener humo
+        if (smokeTrail != null)
+            smokeTrail.StopTrail();
+
+        // apagar joint visual
+        if (jointFX != null)
+            jointFX.SetOffline();
+
+        // regresar mano INSTANTÁNEAMENTE
+        if (smokingHand != null)
+            smokingHand.SetInstantIdle();
+
+        // limpiar sombras
+        if (shadowSystem != null)
+            shadowSystem.ClearShadows();
     }
 }
