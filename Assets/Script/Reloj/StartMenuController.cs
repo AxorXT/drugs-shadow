@@ -14,6 +14,7 @@ public class StartMenuController : MonoBehaviour
     public GameObject heartUI;
     public GameObject crosshair;
     public GameObject pauseMenuUI;
+    public GameObject creditsUI;
 
     [Header("Rotación")]
     public float lookAtWatchX = 60f;
@@ -38,8 +39,9 @@ public class StartMenuController : MonoBehaviour
         ActivateStartMenu();
     }
 
-    void ActivateStartMenu()
+    public void ActivateStartMenu()
     {
+        CancelInvoke();
         gameStarted = false;
 
         playerController.enabled = false;
@@ -54,10 +56,12 @@ public class StartMenuController : MonoBehaviour
         heartUI.SetActive(false);
         crosshair.SetActive(false);
         pauseMenuUI.SetActive(false);
+        creditsUI.SetActive(false);
     }
 
     public void StartGame()
     {
+        CancelInvoke();
         if (gameStarted) return;
 
         gameStarted = true;
@@ -74,7 +78,7 @@ public class StartMenuController : MonoBehaviour
         watchAnim.ToPlay();
         camLook.LookForward();
 
-        Invoke(nameof(EnablePlayer), 0.5f);
+        StartCoroutine(StartGameRoutine());
     }
 
     void EnablePlayer()
@@ -135,5 +139,54 @@ public class StartMenuController : MonoBehaviour
         playerController.SetLookRotation(currentX);
 
         playerController.enabled = true;
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke();
+    }
+
+    IEnumerator StartGameRoutine()
+    {
+        playerController.enabled = false;
+
+        watchAnim.ToPlay();
+        camLook.LookForward();
+
+        yield return new WaitForSeconds(0.5f);
+
+        //sincroniza la rotación ANTES de activar
+        float currentX = playerCamera.localEulerAngles.x;
+
+        if (currentX > 180f)
+            currentX -= 360f;
+
+        playerController.SetLookRotation(currentX);
+
+        playerController.enabled = true;
+    }
+
+    public void OpenCredits()
+    {
+        CancelInvoke();
+        StopAllCoroutines();
+
+        // ocultar menú principal
+        startMenuUI.SetActive(false);
+
+        // mostrar créditos
+        creditsUI.SetActive(true);
+
+        // asegurar control de cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void CloseCredits()
+    {
+        creditsUI.SetActive(false);
+
+        // volver al menú inicial correctamente
+        ActivateStartMenu();
     }
 }
