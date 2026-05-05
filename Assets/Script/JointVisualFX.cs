@@ -44,4 +44,15 @@ public class JointVisualFX : MonoBehaviour
         mat.EnableKeyword("_EMISSION");
         mat.SetColor("_EmissionColor", idleColor * idleIntensity);
     }
+
+    public void SetOffline()
+    {
+        if (mat != null)
+        {
+            mat.SetColor("_EmissionColor", Color.black);
+        }
+
+        if (smokePuff != null)
+            smokePuff.Stop();
+    }
 }
